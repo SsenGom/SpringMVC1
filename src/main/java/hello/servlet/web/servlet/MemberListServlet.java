@@ -18,12 +18,15 @@ public class MemberListServlet extends HttpServlet {
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        response.setContentType("text/html");
+        response.setCharacterEncoding("utf-8");
+
         List<Member> members = memberRepository.findAll();
 
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("utf-8");
-        PrintWriter w = resp.getWriter();
+
+        PrintWriter w = response.getWriter();
         w.write("<html>");
         w.write("<head>");
         w.write(" <meta charset=\"UTF-8\">");
